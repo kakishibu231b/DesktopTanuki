@@ -164,5 +164,14 @@ namespace DesktopTanuki
                 bolBye = true;
             }
         }
+
+        private void toolStripMenuItemVersion_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.FileVersionInfo ver =
+                System.Diagnostics.FileVersionInfo.GetVersionInfo(
+                System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            MessageBox.Show( "バージョン情報\n" + ver);
+        }
     }
 }

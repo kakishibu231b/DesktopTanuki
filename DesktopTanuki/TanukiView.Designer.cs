@@ -45,25 +45,26 @@ namespace DesktopTanuki
             this.toolStripMenuItem1,
             this.toolStripMenuItemVersion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 54);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
             // 
             // toolStripMenuItemQuit
             // 
             this.toolStripMenuItemQuit.Name = "toolStripMenuItemQuit";
-            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemQuit.Text = "バイバイ(^^)/~~~";
             this.toolStripMenuItemQuit.Click += new System.EventHandler(this.toolStripMenuItemQuit_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripMenuItemVersion
             // 
             this.toolStripMenuItemVersion.Name = "toolStripMenuItemVersion";
-            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItemVersion.Text = "バージョン情報";
+            this.toolStripMenuItemVersion.Click += new System.EventHandler(this.toolStripMenuItemVersion_Click);
             // 
             // tanukiByeTimer
             // 
