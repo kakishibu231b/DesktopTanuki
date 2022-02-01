@@ -30,11 +30,13 @@ namespace DesktopTanuki
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TanukiBody));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.tanukiByeTimer = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,30 +47,37 @@ namespace DesktopTanuki
             this.toolStripMenuItem1,
             this.toolStripMenuItemVersion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 54);
             // 
             // toolStripMenuItemQuit
             // 
             this.toolStripMenuItemQuit.Name = "toolStripMenuItemQuit";
-            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItemQuit.Text = "バイバイ(^^)/~~~";
             this.toolStripMenuItemQuit.Click += new System.EventHandler(this.toolStripMenuItemQuit_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(162, 6);
             // 
             // toolStripMenuItemVersion
             // 
             this.toolStripMenuItemVersion.Name = "toolStripMenuItemVersion";
-            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItemVersion.Text = "バージョン情報";
             this.toolStripMenuItemVersion.Click += new System.EventHandler(this.toolStripMenuItemVersion_Click);
             // 
             // tanukiByeTimer
             // 
             this.tanukiByeTimer.Tick += new System.EventHandler(this.tanukiByeTimer_Tick);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // TanukiBody
             // 
@@ -78,6 +87,7 @@ namespace DesktopTanuki
             this.ClientSize = new System.Drawing.Size(500, 500);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TanukiBody";
@@ -101,6 +111,7 @@ namespace DesktopTanuki
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemQuit;
         private System.Windows.Forms.Timer tanukiByeTimer;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 
