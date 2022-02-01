@@ -9,7 +9,7 @@ namespace DesktopTanuki
     static class TanukiControl
     {
         /// <summary>
-        /// アプリケーションのメイン エントリ ポイントです。
+        /// たぬき召喚プログラム
         /// </summary>
         [STAThread]
         static void Main()

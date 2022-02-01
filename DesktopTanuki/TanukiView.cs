@@ -124,22 +124,13 @@ namespace DesktopTanuki
         }
 
         /// <summary>
-        /// たぬきバイバイ
+        /// たぬき召喚解除指示
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void toolStripMenuItemQuit_Click(object sender, EventArgs e)
         {
-            Close();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tanukiByeTimer_Tick(object sender, EventArgs e)
-        {
+            // たぬきとバイバイする。
             Close();
         }
 
@@ -152,19 +143,45 @@ namespace DesktopTanuki
         {
             if  (!bolBye)
             {
-                tanukiByeTimer.Interval = 1000;
-                tanukiByeTimer.Enabled = true;
+                // たぬきは召喚解除されるとき、召喚解除直前にバイバイする。
 
+                // 手を振る前の召喚解除命令はキャンセルする。
+                e.Cancel = true;
+
+                // たぬきの動作をバイバイに変更する。
                 BackgroundImage.Dispose();
                 BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_002;
                 ImageAnimator.Animate(BackgroundImage, new EventHandler(Image_FrameChanged));
 
-                e.Cancel = true;
+                // バイバイする時間はタイマーで決める。
+                tanukiByeTimer.Interval = 1000;     // バイバイし続ける時間(1000ms)
+                tanukiByeTimer.Enabled = true;      // バイバイタイマー起動
 
+                // 手を振る準備が整ったので、バイバイ状態ONにする。
                 bolBye = true;
+            }
+            else
+            {
+
             }
         }
 
+        /// <summary>
+        /// バイバイタイマータイムアウト
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tanukiByeTimer_Tick(object sender, EventArgs e)
+        {
+            // たぬきとバイバイする。
+            Close();
+        }
+
+        /// <summary>
+        /// バージョン情報
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemVersion_Click(object sender, EventArgs e)
         {
             System.Diagnostics.FileVersionInfo ver =
