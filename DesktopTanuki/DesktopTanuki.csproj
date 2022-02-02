@@ -177,5 +177,17 @@
   <ItemGroup>
     <None Include="gif\tanuki_004.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_005.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_005A.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_005B.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_006.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,16 +13,13 @@ namespace DesktopTanuki
 {
     public partial class TanukiBody : Form
     {
-        bool bolBye;
+        bool m_bolBye;
 
         Point m_initPos;
 
         System.EventHandler m_ehFrameChanged;
 
-        int int_tanuki_number;
-
-        Bitmap m_tanuki_001;
-        Bitmap m_tanuki_004;
+        int m_int_tanuki_number;
 
         /// <summary>
         /// たぬき本体
@@ -31,12 +28,9 @@ namespace DesktopTanuki
         {
             InitializeComponent();
 
-            bolBye = false;
+            m_bolBye = false;
 
             m_ehFrameChanged = new EventHandler(Image_FrameChanged);
-
-            m_tanuki_001 = global::DesktopTanuki.Properties.Resources.tanuki_001;
-            m_tanuki_004 = global::DesktopTanuki.Properties.Resources.tanuki_004;
         }
 
         /// <summary>
@@ -155,7 +149,7 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if  (!bolBye)
+            if  (!m_bolBye)
             {
                 // たぬきは召喚解除されるとき、召喚解除直前にバイバイする。
 
@@ -172,7 +166,7 @@ namespace DesktopTanuki
                 tanukiByeTimer.Enabled = true;      // バイバイタイマー起動
 
                 // 手を振る準備が整ったので、バイバイ状態ONにする。
-                bolBye = true;
+                m_bolBye = true;
             }
             else
             {
@@ -208,7 +202,7 @@ namespace DesktopTanuki
         Point m_mousePoint;
 
         /// <summary>
-        /// 
+        /// たぬき捕獲
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -223,6 +217,11 @@ namespace DesktopTanuki
             }
         }
 
+        /// <summary>
+        /// たぬき捕獲中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TanukiBody_MouseMove(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -232,6 +231,12 @@ namespace DesktopTanuki
             }
         }
 
+
+        /// <summary>
+        /// たぬき捕獲解除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TanukiBody_MouseUp(object sender, MouseEventArgs e)
         {
             BackgroundImage.Dispose();
@@ -241,34 +246,22 @@ namespace DesktopTanuki
             Top = m_initPos.Y;
         }
 
-        private void TanukiBody_KeyDown(object sender, KeyEventArgs e)
-        {
-         }
-
-        private void TanukiBody_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (int_tanuki_number != 1)
-            {
-                BackgroundImage.Dispose();
-                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
-                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
-                int_tanuki_number = 1;
-
-                tanukiMoveTimer.Enabled = false;
-            }
-        }
-
-
+        /// <summary>
+        /// たぬき指示開始
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TanukiBody_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            // 左移動指示
             if (e.KeyCode == Keys.Left)
             {
-                if (int_tanuki_number != 4)
+                if (m_int_tanuki_number != 4)
                 {
                     BackgroundImage.Dispose();
                     BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_004;
                     ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
-                    int_tanuki_number = 4;
+                    m_int_tanuki_number = 4;
 
                     tanukiMoveTimer.Interval = 10;
                     tanukiMoveTimer.Enabled = true;
@@ -276,6 +269,39 @@ namespace DesktopTanuki
             }
         }
 
+        /// <summary>
+        /// たぬき指示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TanukiBody_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// たぬき指示解除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TanukiBody_KeyUp(object sender, KeyEventArgs e)
+        {
+            // 左移動指示解除
+            if (m_int_tanuki_number != 1)
+            {
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+                m_int_tanuki_number = 1;
+
+                tanukiMoveTimer.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// たぬき移動タイマー
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanukiMoveTimer_Tick(object sender, EventArgs e)
         {
             if ( Left < -1 * Width)
