@@ -15,6 +15,15 @@ namespace DesktopTanuki
     {
         bool bolBye;
 
+        Point m_initPos;
+
+        System.EventHandler m_ehFrameChanged;
+
+        int int_tanuki_number;
+
+        Bitmap m_tanuki_001;
+        Bitmap m_tanuki_004;
+
         /// <summary>
         /// たぬき本体
         /// </summary>
@@ -23,6 +32,11 @@ namespace DesktopTanuki
             InitializeComponent();
 
             bolBye = false;
+
+            m_ehFrameChanged = new EventHandler(Image_FrameChanged);
+
+            m_tanuki_001 = global::DesktopTanuki.Properties.Resources.tanuki_001;
+            m_tanuki_004 = global::DesktopTanuki.Properties.Resources.tanuki_004;
         }
 
         /// <summary>
@@ -37,6 +51,7 @@ namespace DesktopTanuki
             //------------------------------
             Bitmap bmp_skin = global::DesktopTanuki.Properties.Resources.tanuki_001;
 
+            TopMost = true;
 
             FrameDimension frameDimension = new FrameDimension(bmp_skin.FrameDimensionsList[0]);
             int int_frame_count = bmp_skin.GetFrameCount(frameDimension);
@@ -82,13 +97,12 @@ namespace DesktopTanuki
             int tanuki_width = Width;
             int tanuki_height = Height;
 
-
-
             // 初期表示位置設定
-            Location = new Point(screen_width - tanuki_width, screen_height - int_bottom);
+            m_initPos = new Point(screen_width - tanuki_width, screen_height - int_bottom);
+            Location = m_initPos;
 
             // たぬき動作許可
-            ImageAnimator.Animate(BackgroundImage, new EventHandler(Image_FrameChanged));
+            ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
         }
 
         /// <summary>
@@ -151,7 +165,7 @@ namespace DesktopTanuki
                 // たぬきの動作をバイバイに変更する。
                 BackgroundImage.Dispose();
                 BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_002;
-                ImageAnimator.Animate(BackgroundImage, new EventHandler(Image_FrameChanged));
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
 
                 // バイバイする時間はタイマーで決める。
                 tanukiByeTimer.Interval = 1000;     // バイバイし続ける時間(1000ms)
@@ -189,6 +203,89 @@ namespace DesktopTanuki
                 System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             MessageBox.Show( "バージョン情報\n" + ver);
+        }
+
+        Point m_mousePoint;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TanukiBody_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left) {
+                m_mousePoint = new Point(e.X, e.Y);
+
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_003;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+            }
+        }
+
+        private void TanukiBody_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Left += e.X - m_mousePoint.X;
+                Top += e.Y - m_mousePoint.Y;
+            }
+        }
+
+        private void TanukiBody_MouseUp(object sender, MouseEventArgs e)
+        {
+            BackgroundImage.Dispose();
+            BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
+            ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+
+            Top = m_initPos.Y;
+        }
+
+        private void TanukiBody_KeyDown(object sender, KeyEventArgs e)
+        {
+         }
+
+        private void TanukiBody_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (int_tanuki_number != 1)
+            {
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+                int_tanuki_number = 1;
+
+                tanukiMoveTimer.Enabled = false;
+            }
+        }
+
+
+        private void TanukiBody_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                if (int_tanuki_number != 4)
+                {
+                    BackgroundImage.Dispose();
+                    BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_004;
+                    ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+                    int_tanuki_number = 4;
+
+                    tanukiMoveTimer.Interval = 10;
+                    tanukiMoveTimer.Enabled = true;
+                }
+            }
+        }
+
+        private void tanukiMoveTimer_Tick(object sender, EventArgs e)
+        {
+            if ( Left < -1 * Width)
+            {
+                Left = Screen.PrimaryScreen.WorkingArea.Width;
+            }
+            else
+            {
+                Left -= 10;
+            }
         }
     }
 }

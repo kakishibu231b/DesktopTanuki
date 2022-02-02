@@ -37,6 +37,7 @@ namespace DesktopTanuki
             this.toolStripMenuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.tanukiByeTimer = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tanukiMoveTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,10 @@ namespace DesktopTanuki
             this.notifyIcon1.Text = "たぬき召喚中";
             this.notifyIcon1.Visible = true;
             // 
+            // tanukiMoveTimer
+            // 
+            this.tanukiMoveTimer.Tick += new System.EventHandler(this.tanukiMoveTimer_Tick);
+            // 
             // TanukiBody
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -98,7 +103,13 @@ namespace DesktopTanuki
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TanukiView_FormClosing);
             this.Load += new System.EventHandler(this.Tanuki_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TanukiBody_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TanukiBody_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TanukiBody_KeyUp);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TanukiView_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TanukiBody_PreviewKeyDown);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -112,6 +123,7 @@ namespace DesktopTanuki
         private System.Windows.Forms.Timer tanukiByeTimer;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Timer tanukiMoveTimer;
     }
 }
 
