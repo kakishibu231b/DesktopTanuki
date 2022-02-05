@@ -63,6 +63,16 @@ namespace DesktopTanuki.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap fukidashi_512x201 {
+            get {
+                object obj = ResourceManager.GetObject("fukidashi_512x201", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap tanuki_001 {
             get {
                 object obj = ResourceManager.GetObject("tanuki_001", resourceCulture);
@@ -136,6 +146,36 @@ namespace DesktopTanuki.Properties {
         internal static System.Drawing.Bitmap tanuki_006 {
             get {
                 object obj = ResourceManager.GetObject("tanuki_006", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap tanuki_007 {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_007", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap tanuki_007A {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_007A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap tanuki_007B {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_007B", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -118,14 +118,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TanukiView.cs">
+    <Compile Include="Fukidashi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TanukiView.Designer.cs">
-      <DependentUpon>TanukiView.cs</DependentUpon>
+    <Compile Include="Fukidashi.Designer.cs">
+      <DependentUpon>Fukidashi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TanukiMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TanukiMain.Designer.cs">
+      <DependentUpon>TanukiMain.cs</DependentUpon>
     </Compile>
     <Compile Include="TanukiControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Fukidashi.resx">
+      <DependentUpon>Fukidashi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -136,8 +145,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TanukiView.resx">
-      <DependentUpon>TanukiView.cs</DependentUpon>
+    <EmbeddedResource Include="TanukiMain.resx">
+      <DependentUpon>TanukiMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DesktopTanuki_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -188,6 +197,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="gif\tanuki_006.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="png\fukidashi_800x300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="png\fukidashi_600x300.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="png\fukidashi_512x201.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_007.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_007A.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_007B.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

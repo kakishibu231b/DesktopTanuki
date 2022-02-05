@@ -16,7 +16,7 @@ namespace DesktopTanuki
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TanukiBody());
+            Application.Run(new TanukiMainBody());
         }
     }
 }

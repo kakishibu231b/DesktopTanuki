@@ -1,7 +1,7 @@
 ﻿
 namespace DesktopTanuki
 {
-    partial class TanukiBody
+    partial class TanukiMainBody
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -30,7 +30,7 @@ namespace DesktopTanuki
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TanukiBody));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TanukiMainBody));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -38,6 +38,7 @@ namespace DesktopTanuki
             this.tanukiByeTimer = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tanukiMoveTimer = new System.Windows.Forms.Timer(this.components);
+            this.tanukiFukidashiTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,10 @@ namespace DesktopTanuki
             // 
             this.tanukiMoveTimer.Tick += new System.EventHandler(this.tanukiMoveTimer_Tick);
             // 
+            // tanukiFukidashiTimer
+            // 
+            this.tanukiFukidashiTimer.Tick += new System.EventHandler(this.tanukiFukidashiTimer_Tick);
+            // 
             // TanukiBody
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -107,6 +112,8 @@ namespace DesktopTanuki
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TanukiBody_KeyUp);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TanukiView_MouseClick);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseDown);
+            this.MouseLeave += new System.EventHandler(this.TanukiBody_MouseLeave);
+            this.MouseHover += new System.EventHandler(this.TanukiBody_MouseHover);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TanukiBody_MouseUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TanukiBody_PreviewKeyDown);
@@ -124,6 +131,7 @@ namespace DesktopTanuki
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Timer tanukiMoveTimer;
+        private System.Windows.Forms.Timer tanukiFukidashiTimer;
     }
 }
 
