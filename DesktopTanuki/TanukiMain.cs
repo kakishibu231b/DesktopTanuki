@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DesktopTanuki
 {
     public partial class TanukiMainBody : Form
     {
+        TanukiSubBody m_tanukiSubBody;
+
+
         Fukidashi m_frm_fukidashi;
 
         bool m_bolBye;
@@ -32,6 +29,7 @@ namespace DesktopTanuki
         {
             InitializeComponent();
 
+            m_tanukiSubBody = new TanukiSubBody();
             m_frm_fukidashi = new Fukidashi();
 
             m_bolBye = false;
@@ -39,7 +37,7 @@ namespace DesktopTanuki
             m_ehFrameChanged = new EventHandler(Image_FrameChanged);
 
             tanukiFukidashiTimer.Interval = 5000;
-            tanukiFukidashiTimer.Enabled = true;
+            //tanukiFukidashiTimer.Enabled = true;
         }
 
         /// <summary>
@@ -147,7 +145,7 @@ namespace DesktopTanuki
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TanukiBody_Paint(object sender, PaintEventArgs e)
+        private void TanukiMainBody_Paint(object sender, PaintEventArgs e)
         {
             ImageAnimator.UpdateFrames(BackgroundImage);
         }
@@ -375,6 +373,11 @@ namespace DesktopTanuki
         private void TanukiBody_MouseLeave(object sender, EventArgs e)
         {
             ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+        }
+
+        private void toolStripMenuItemUranai_Click(object sender, EventArgs e)
+        {
+            m_tanukiSubBody.doUranai();
         }
     }
 }
