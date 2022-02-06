@@ -41,6 +41,7 @@ namespace DesktopTanuki
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tanukiMoveTimer = new System.Windows.Forms.Timer(this.components);
             this.tanukiFukidashiTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItemBakushin = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,12 +49,13 @@ namespace DesktopTanuki
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemUranai,
+            this.toolStripMenuItemBakushin,
             this.toolStripSeparator1,
             this.toolStripMenuItemQuit,
             this.toolStripSeparator2,
             this.toolStripMenuItemVersion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 126);
             // 
             // toolStripMenuItemUranai
             // 
@@ -105,6 +107,13 @@ namespace DesktopTanuki
             // 
             this.tanukiFukidashiTimer.Tick += new System.EventHandler(this.tanukiFukidashiTimer_Tick);
             // 
+            // toolStripMenuItemBakushin
+            // 
+            this.toolStripMenuItemBakushin.Name = "toolStripMenuItemBakushin";
+            this.toolStripMenuItemBakushin.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemBakushin.Text = "驀進";
+            this.toolStripMenuItemBakushin.Click += new System.EventHandler(this.toolStripMenuItemBakushin_Click);
+            // 
             // TanukiMainBody
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -150,6 +159,7 @@ namespace DesktopTanuki
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemUranai;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBakushin;
     }
 }
 

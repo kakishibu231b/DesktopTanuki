@@ -31,12 +31,18 @@ namespace DesktopTanuki
         {
             this.components = new System.ComponentModel.Container();
             this.timerUranai = new System.Windows.Forms.Timer(this.components);
+            this.timerBakushin = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timerUranai
             // 
             this.timerUranai.Interval = 5000;
             this.timerUranai.Tick += new System.EventHandler(this.timerUranai_Tick);
+            // 
+            // timerBakushin
+            // 
+            this.timerBakushin.Interval = 10;
+            this.timerBakushin.Tick += new System.EventHandler(this.timerBakushin_Tick);
             // 
             // TanukiSubBody
             // 
@@ -61,6 +67,7 @@ namespace DesktopTanuki
         #endregion
 
         private System.Windows.Forms.Timer timerUranai;
+        private System.Windows.Forms.Timer timerBakushin;
     }
 }
 

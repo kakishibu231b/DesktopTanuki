@@ -27,8 +27,8 @@
     <TargetCulture>ja-JP</TargetCulture>
     <ProductName>デスクトップたぬき</ProductName>
     <PublisherName>柿渋D</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -218,6 +218,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="gif\tanuki_007B.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_008A.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_008B.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_008C.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

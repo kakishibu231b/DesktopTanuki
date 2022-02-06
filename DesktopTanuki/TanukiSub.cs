@@ -30,6 +30,51 @@ namespace DesktopTanuki
         /// <summary>
         /// 
         /// </summary>
+        public void doBakushin()
+        {
+            DateTime dateTime = DateTime.Now;
+            Random random = new Random(dateTime.Millisecond);
+            int intBakushinType = random.Next(1, 3);
+            switch(intBakushinType)
+            {
+                case 1:
+                    setTanuki("8A");
+                    break;
+                case 2:
+                    setTanuki("8B");
+                    break;
+                case 3:
+                    setTanuki("8C");
+                    break;
+                default:
+                    break;
+            }
+            timerBakushin.Enabled = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timerBakushin_Tick(object sender, EventArgs e)
+        {
+            Point pos = Location;
+            if (pos.X == -1 * Width)
+            {
+                timerBakushin.Enabled = false;
+                setTanuki("");
+            }
+            else
+            {
+                pos.X -= 50;
+                Location = pos;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void doUranai()
         {
             setTanuki("7");
@@ -38,6 +83,32 @@ namespace DesktopTanuki
             Random random = new Random(dateTime.Millisecond);
             m_int_uranaiStatus = random.Next(1, 100);
             timerUranai.Enabled = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timerUranai_Tick(object sender, EventArgs e)
+        {
+            if (m_int_uranaiStatus > 0)
+            {
+                if (m_int_uranaiStatus % 2 == 0)
+                {
+                    setTanuki("7A");
+                }
+                else
+                {
+                    setTanuki("7B");
+                }
+                m_int_uranaiStatus = 0;
+            }
+            else
+            {
+                setTanuki("");
+                timerUranai.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -58,9 +129,19 @@ namespace DesktopTanuki
                 case "7B":
                     bmp_skin = global::DesktopTanuki.Properties.Resources.tanuki_007B;
                     break;
+                case "8A":
+                    bmp_skin = global::DesktopTanuki.Properties.Resources.tanuki_008A;
+                    break;
+                case "8B":
+                    bmp_skin = global::DesktopTanuki.Properties.Resources.tanuki_008B;
+                    break;
+                case "8C":
+                    bmp_skin = global::DesktopTanuki.Properties.Resources.tanuki_008C;
+                    break;
                 default:
                     break;
             }
+
             if (bmp_skin == null)
             {
                 if (BackgroundImage != null)
@@ -141,7 +222,23 @@ namespace DesktopTanuki
                 int tanuki_width = Width;
                 int tanuki_height = Height;
 
-                Point pos = new Point(0, screen_height - int_bottom);
+                Point pos;
+                switch (type)
+                {
+                    case "7":
+                    case "7A":
+                    case "7B":
+                        pos = new Point(0, screen_height - int_bottom);
+                        break;
+                    case "8A":
+                    case "8B":
+                    case "8C":
+                        pos = new Point(screen_width, screen_height - int_bottom);
+                        break;
+                    default:
+                        pos = new Point(0, screen_height - int_bottom);
+                        break;
+                }
                 Location = pos;
 
                 if (BackgroundImage != null)
@@ -172,27 +269,6 @@ namespace DesktopTanuki
         private void TanukiSubBody_Paint(object sender, PaintEventArgs e)
         {
             ImageAnimator.UpdateFrames(BackgroundImage);
-        }
-
-        private void timerUranai_Tick(object sender, EventArgs e)
-        {
-            if (m_int_uranaiStatus > 0)
-            {
-                if (m_int_uranaiStatus % 2 == 0)
-                {
-                    setTanuki("7A");
-                }
-                else
-                {
-                    setTanuki("7B");
-                }
-                m_int_uranaiStatus = 0;
-            }
-            else
-            {
-                setTanuki("");
-                timerUranai.Enabled = false;
-            }
         }
     }
 }

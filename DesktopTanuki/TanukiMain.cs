@@ -7,8 +7,8 @@ namespace DesktopTanuki
 {
     public partial class TanukiMainBody : Form
     {
-        TanukiSubBody m_tanukiSubBody;
-
+        TanukiSubBody m_tanukiSubBodyUranai;
+        TanukiSubBody m_tanukiSubBodyBakushin;
 
         Fukidashi m_frm_fukidashi;
 
@@ -29,7 +29,9 @@ namespace DesktopTanuki
         {
             InitializeComponent();
 
-            m_tanukiSubBody = new TanukiSubBody();
+            m_tanukiSubBodyUranai = new TanukiSubBody();
+            m_tanukiSubBodyBakushin = new TanukiSubBody();
+
             m_frm_fukidashi = new Fukidashi();
 
             m_bolBye = false;
@@ -298,6 +300,16 @@ namespace DesktopTanuki
                     tanukiMoveTimer.Enabled = true;
                 }
             }
+            if (e.KeyCode == Keys.B)
+            {
+                toolStripMenuItemBakushin_Click(sender, e);
+                this.Focus();
+            }
+            if (e.KeyCode == Keys.U)
+            {
+                toolStripMenuItemUranai_Click(sender, e);
+                this.Focus();
+            }
         }
 
         /// <summary>
@@ -366,8 +378,8 @@ namespace DesktopTanuki
 
         private void TanukiBody_MouseHover(object sender, EventArgs e)
         {
-            BackgroundImage.Dispose();
-            BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
+            //BackgroundImage.Dispose();
+            //BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
         }
 
         private void TanukiBody_MouseLeave(object sender, EventArgs e)
@@ -377,7 +389,12 @@ namespace DesktopTanuki
 
         private void toolStripMenuItemUranai_Click(object sender, EventArgs e)
         {
-            m_tanukiSubBody.doUranai();
+            m_tanukiSubBodyUranai.doUranai();
+        }
+
+        private void toolStripMenuItemBakushin_Click(object sender, EventArgs e)
+        {
+            m_tanukiSubBodyBakushin.doBakushin();
         }
     }
 }
