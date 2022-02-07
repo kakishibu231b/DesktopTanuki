@@ -12,7 +12,8 @@ namespace DesktopTanuki
 
         Fukidashi m_frm_fukidashi;
 
-        bool m_bolBye;
+        bool m_bol_bye;
+        bool m_bol_sleep;
 
         Point m_initPos;
 
@@ -42,7 +43,8 @@ namespace DesktopTanuki
 
             m_frm_fukidashi = new Fukidashi();
 
-            m_bolBye = false;
+            m_bol_bye = false;
+            m_bol_sleep = false;
 
             m_ehFrameChanged = new EventHandler(Image_FrameChanged);
 
@@ -74,7 +76,7 @@ namespace DesktopTanuki
             int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
 
             // 初期表示位置設定
-            m_initPos = new Point(screen_width - Width, screen_height - m_rectangle.Bottom);
+            m_initPos = new Point(screen_width - m_rectangle.Right, screen_height - m_rectangle.Bottom);
             Location = m_initPos;
         }
 
@@ -118,6 +120,9 @@ namespace DesktopTanuki
                 case "5B":
                     bitmap = global::DesktopTanuki.Properties.Resources.tanuki_005B;
                     break;
+                case "6":
+                    bitmap = global::DesktopTanuki.Properties.Resources.tanuki_006;
+                    break;
                 default:
                     bitmap = global::DesktopTanuki.Properties.Resources.tanuki_001;
                     break;
@@ -134,8 +139,6 @@ namespace DesktopTanuki
             }
             BackgroundImage = bitmap;
             ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
-
-            Top = Screen.PrimaryScreen.WorkingArea.Height - m_rectangle.Bottom;
 
             m_str_tanuki_number = str_tanuki_number;
         }
@@ -160,10 +163,10 @@ namespace DesktopTanuki
                 bitmap.SelectActiveFrame(frameDimension, int_frame_no);
 
                 // フレームをチェックしてX座標最小値を取得する。
-                for (int int_x = 0; int_x < Width; ++int_x)
+                for (int int_x = 0; int_x < bitmap.Width; ++int_x)
                 {
                     bool bol_found = false;
-                    for (int int_y = 0; int_y < Height; ++int_y)
+                    for (int int_y = 0; int_y < bitmap.Height; ++int_y)
                     {
                         Color color = bitmap.GetPixel(int_x, int_y);
                         if (color.A != 0)
@@ -183,10 +186,10 @@ namespace DesktopTanuki
                 }
 
                 // フレームをチェックしてY座標最小値を取得する。
-                for (int int_y = 0; int_y < Height; ++int_y)
+                for (int int_y = 0; int_y < bitmap.Height; ++int_y)
                 {
                     bool bol_found = false;
-                    for (int int_x = 0; int_x < Width; ++int_x)
+                    for (int int_x = 0; int_x < bitmap.Width; ++int_x)
                     {
                         Color color = bitmap.GetPixel(int_x, int_y);
                         if (color.A != 0)
@@ -206,10 +209,10 @@ namespace DesktopTanuki
                 }
 
                 // フレームをチェックしてX座標最大値を取得する。
-                for (int int_x = Width - 1; int_x >= 0; --int_x)
+                for (int int_x = bitmap.Width - 1; int_x >= 0; --int_x)
                 {
                     bool bol_found = false;
-                    for (int int_y = 0; int_y < Height; ++int_y)
+                    for (int int_y = 0; int_y < bitmap.Height; ++int_y)
                     {
                         Color color = bitmap.GetPixel(int_x, int_y);
                         if (color.A != 0)
@@ -229,10 +232,10 @@ namespace DesktopTanuki
                 }
 
                 // フレームをチェックしてY座標最大値を取得する。
-                for (int int_y = Height - 1; int_y >= 0; --int_y)
+                for (int int_y = bitmap.Height - 1; int_y >= 0; --int_y)
                 {
                     bool bol_found = false;
-                    for (int int_x = 0; int_x < Width; ++int_x)
+                    for (int int_x = 0; int_x < bitmap.Width; ++int_x)
                     {
                         Color color = bitmap.GetPixel(int_x, int_y);
                         if (color.A != 0)
@@ -274,7 +277,40 @@ namespace DesktopTanuki
         {
             ImageAnimator.UpdateFrames(BackgroundImage);
 
-            switch(m_str_tanuki_number)
+            // 就寝時刻判定
+            DateTime dateTime = DateTime.Now;
+            int int_hour = dateTime.Hour;
+            if (int_hour < 5 || 21 < int_hour)
+            {
+                // 就寝時刻内の場合就寝する。
+                if (!m_bol_sleep)
+                {
+                    setTanukiBody("6");
+                    m_bol_sleep = true;
+
+                    int screen_width = Screen.PrimaryScreen.WorkingArea.Width;
+                    int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
+                    m_initPos = new Point(screen_width - m_rectangle.Right, screen_height - m_rectangle.Bottom);
+                    Location = m_initPos;
+                }
+                return;
+            }
+
+            // 就寝時刻外の場合起床する。
+            if (m_bol_sleep)
+            {
+                setTanukiBody("1");
+                m_bol_sleep = false;
+
+                int screen_width = Screen.PrimaryScreen.WorkingArea.Width;
+                int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
+                m_initPos = new Point(screen_width - m_rectangle.Right, screen_height - m_rectangle.Bottom);
+                Location = m_initPos;
+
+                return;
+            }
+
+            switch (m_str_tanuki_number)
             {
                 case "1":
                     if (m_int_hima_counter > m_int_hima_counter_max)
@@ -323,7 +359,6 @@ namespace DesktopTanuki
                 default:
                     break;
             }
-
         }
 
         private void TanukiView_MouseClick(object sender, MouseEventArgs e)
@@ -332,7 +367,7 @@ namespace DesktopTanuki
 
             if (e.Button == MouseButtons.Left)
             {
-                Application_Idle(sender, e);
+
             }
             if (e.Button == MouseButtons.Right)
             {
@@ -358,9 +393,15 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiView_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // 就寝中は即座にバイバイ
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
 
-            if (!m_bolBye)
+            if (!m_bol_bye)
             {
                 // たぬきは召喚解除されるとき、召喚解除直前にバイバイする。
 
@@ -375,7 +416,7 @@ namespace DesktopTanuki
                 tanukiByeTimer.Enabled = true;      // バイバイタイマー起動
 
                 // 手を振る準備が整ったので、バイバイ状態ONにする。
-                m_bolBye = true;
+                m_bol_bye = true;
             }
             else
             {
@@ -417,6 +458,12 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiBody_MouseDown(object sender, MouseEventArgs e)
         {
+            // 就寝中は捕獲不可
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
 
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left) {
@@ -432,6 +479,11 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiBody_MouseMove(object sender, MouseEventArgs e)
         {
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
 
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -449,6 +501,11 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiBody_MouseUp(object sender, MouseEventArgs e)
         {
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
             setTanukiBody("1");
         }
@@ -460,6 +517,11 @@ namespace DesktopTanuki
         /// <param name="e"></param>
         private void TanukiBody_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
 
             // 左移動指示
@@ -524,10 +586,11 @@ namespace DesktopTanuki
             }
         }
 
-        private void Application_Idle(Object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanukiFukidashiTimer_Tick(object sender, EventArgs e)
         {
             Point pos = new Point(Left - m_frm_fukidashi.Width / 2 + m_rectangle.Left, Top);
@@ -552,7 +615,7 @@ namespace DesktopTanuki
         }
 
         /// <summary>
-        /// 占い
+        /// 占い師召喚
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -563,8 +626,18 @@ namespace DesktopTanuki
             m_tanukiSubBodyUranai.doUranai(this);
         }
 
+
+        /// <summary>
+        /// 占い結果受信
+        /// </summary>
+        /// <param name="str_kekka"></param>
         public void receveUranaiKekka(string str_kekka)
         {
+            if (m_bol_sleep)
+            {
+                return;
+            }
+
             m_int_hima_counter = 0;
 
             if ( str_kekka == "daikichi" )
@@ -602,7 +675,7 @@ namespace DesktopTanuki
         }
 
         /// <summary>
-        /// 驀進
+        /// 驀進王召喚
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
