@@ -71,6 +71,15 @@ namespace DesktopTanuki.Properties {
         }
         
         /// <summary>
+        ///   System.IO.MemoryStream に類似した型 System.IO.UnmanagedMemoryStream のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream sound_tanuki_008 {
+            get {
+                return ResourceManager.GetStream("sound_tanuki_008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
         internal static System.Drawing.Bitmap tanuki_001 {
@@ -96,6 +105,16 @@ namespace DesktopTanuki.Properties {
         internal static System.Drawing.Bitmap tanuki_001B {
             get {
                 object obj = ResourceManager.GetObject("tanuki_001B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap tanuki_001C {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_001C", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
