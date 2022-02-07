@@ -22,6 +22,8 @@ namespace DesktopTanuki
         int m_int_bakushinSpeed;
         int m_int_uranaiStatus;
 
+        System.Media.SoundPlayer m_soundPlayer;
+
         /// <summary>
         /// たぬきサブ
         /// </summary>
@@ -39,7 +41,7 @@ namespace DesktopTanuki
         /// </summary>
         public void doBakushin()
         {
-            m_frm_fukidashi.setText("バクシン、バクシーン！");
+            m_frm_fukidashi.setText("バクシンバクシィィン！");
             m_frm_fukidashi.setTextSize("MS UI Gothic", 35);
 
             DateTime dateTime = DateTime.Now;
@@ -59,8 +61,11 @@ namespace DesktopTanuki
                 default:
                     break;
             }
-            m_int_bakushinSpeed = random.Next(10, 20);
+            m_int_bakushinSpeed = random.Next(10, 100);
             timerBakushin.Enabled = true;
+
+            m_soundPlayer = new System.Media.SoundPlayer(global::DesktopTanuki.Properties.Resources.sound_tanuki_008);
+            m_soundPlayer.Play();
         }
 
         /// <summary>
@@ -76,6 +81,7 @@ namespace DesktopTanuki
                 timerBakushin.Enabled = false;
                 setTanuki("");
                 m_frm_fukidashi.Visible = false;
+                m_soundPlayer.Dispose();
             }
             else
             {
