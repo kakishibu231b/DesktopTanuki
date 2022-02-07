@@ -83,6 +83,26 @@ namespace DesktopTanuki.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap tanuki_001A {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_001A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap tanuki_001B {
+            get {
+                object obj = ResourceManager.GetObject("tanuki_001B", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap tanuki_002 {
             get {
                 object obj = ResourceManager.GetObject("tanuki_002", resourceCulture);
