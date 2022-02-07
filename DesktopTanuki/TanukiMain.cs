@@ -18,7 +18,7 @@ namespace DesktopTanuki
 
         System.EventHandler m_ehFrameChanged;
 
-        int m_int_tanuki_number;
+        string m_str_tanuki_number;
 
         int m_int_left = -1;
 
@@ -289,12 +289,12 @@ namespace DesktopTanuki
             // 左移動指示
             if (e.KeyCode == Keys.Left)
             {
-                if (m_int_tanuki_number != 4)
+                if (m_str_tanuki_number != "4")
                 {
                     BackgroundImage.Dispose();
                     BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_004;
                     ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
-                    m_int_tanuki_number = 4;
+                    m_str_tanuki_number = "4";
 
                     tanukiMoveTimer.Interval = 10;
                     tanukiMoveTimer.Enabled = true;
@@ -329,12 +329,12 @@ namespace DesktopTanuki
         private void TanukiBody_KeyUp(object sender, KeyEventArgs e)
         {
             // 左移動指示解除
-            if (m_int_tanuki_number != 1)
+            if (m_str_tanuki_number != "1")
             {
                 BackgroundImage.Dispose();
                 BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
                 ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
-                m_int_tanuki_number = 1;
+                m_str_tanuki_number = "1";
 
                 tanukiMoveTimer.Enabled = false;
             }
@@ -387,11 +387,46 @@ namespace DesktopTanuki
             ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
         }
 
+        /// <summary>
+        /// 占い
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemUranai_Click(object sender, EventArgs e)
         {
-            m_tanukiSubBodyUranai.doUranai();
+            m_tanukiSubBodyUranai.doUranai(this);
         }
 
+        public void receveUranaiKekka(string str_kekka)
+        {
+            if ( str_kekka == "daikichi" )
+            {
+                m_str_tanuki_number = "1B";
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001B;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+            }
+            else if (str_kekka == "daikyou")
+            {
+                m_str_tanuki_number = "3";
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_003;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+            }
+            else
+            {
+                m_str_tanuki_number = "1B";
+                BackgroundImage.Dispose();
+                BackgroundImage = global::DesktopTanuki.Properties.Resources.tanuki_001;
+                ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
+            }
+        }
+
+        /// <summary>
+        /// 驀進
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemBakushin_Click(object sender, EventArgs e)
         {
             m_tanukiSubBodyBakushin.doBakushin();

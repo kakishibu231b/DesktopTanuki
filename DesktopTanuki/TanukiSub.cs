@@ -15,6 +15,11 @@ namespace DesktopTanuki
     {
         System.EventHandler m_ehFrameChanged;
 
+        TanukiMainBody m_tanukiMain;
+
+        Fukidashi m_frm_fukidashi;
+
+        int m_int_bakushinSpeed;
         int m_int_uranaiStatus;
 
         /// <summary>
@@ -25,6 +30,8 @@ namespace DesktopTanuki
             InitializeComponent();
 
             m_ehFrameChanged = new EventHandler(Image_FrameChanged);
+
+            m_frm_fukidashi = new Fukidashi();
         }
 
         /// <summary>
@@ -32,10 +39,13 @@ namespace DesktopTanuki
         /// </summary>
         public void doBakushin()
         {
+            m_frm_fukidashi.setText("バクシン、バクシーン！");
+            m_frm_fukidashi.setTextSize("MS UI Gothic", 35);
+
             DateTime dateTime = DateTime.Now;
             Random random = new Random(dateTime.Millisecond);
             int intBakushinType = random.Next(1, 3);
-            switch(intBakushinType)
+            switch (intBakushinType)
             {
                 case 1:
                     setTanuki("8A");
@@ -49,6 +59,7 @@ namespace DesktopTanuki
                 default:
                     break;
             }
+            m_int_bakushinSpeed = random.Next(10, 20);
             timerBakushin.Enabled = true;
         }
 
@@ -64,19 +75,27 @@ namespace DesktopTanuki
             {
                 timerBakushin.Enabled = false;
                 setTanuki("");
+                m_frm_fukidashi.Visible = false;
             }
             else
             {
-                pos.X -= 50;
+                pos.X -= m_int_bakushinSpeed;
                 Location = pos;
+
+                Point pos_fukidashi = m_frm_fukidashi.Location;
+                pos_fukidashi.X = pos.X - m_frm_fukidashi.Width / 2;
+                pos_fukidashi.Y = pos.Y - m_frm_fukidashi.Height / 2;
+                m_frm_fukidashi.Location = pos_fukidashi;
+                m_frm_fukidashi.Visible = true;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void doUranai()
+        public void doUranai(TanukiMainBody tanukiMain)
         {
+            m_tanukiMain = tanukiMain;
             setTanuki("7");
 
             DateTime dateTime = DateTime.Now;
@@ -97,16 +116,19 @@ namespace DesktopTanuki
                 if (m_int_uranaiStatus % 2 == 0)
                 {
                     setTanuki("7A");
+                    m_tanukiMain.receveUranaiKekka("daikichi");
                 }
                 else
                 {
                     setTanuki("7B");
+                    m_tanukiMain.receveUranaiKekka("daikyou");
                 }
                 m_int_uranaiStatus = 0;
             }
             else
             {
                 setTanuki("");
+                m_tanukiMain.receveUranaiKekka("");
                 timerUranai.Enabled = false;
             }
         }

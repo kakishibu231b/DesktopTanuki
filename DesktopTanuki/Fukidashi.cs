@@ -21,6 +21,11 @@ namespace DesktopTanuki
         {
             textBox1.Text = str;
         }
+        public void setTextSize(string familyName, float size)
+        {
+            textBox1.Font.Dispose();
+            textBox1.Font = new Font(familyName, size);
+        }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
