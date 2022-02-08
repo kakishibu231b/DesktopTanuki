@@ -140,6 +140,11 @@ namespace DesktopTanuki
             BackgroundImage = bitmap;
             ImageAnimator.Animate(BackgroundImage, m_ehFrameChanged);
 
+            int screen_width = Screen.PrimaryScreen.WorkingArea.Width;
+            int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
+            m_initPos = new Point(Location.X, screen_height - m_rectangle.Bottom);
+            Location = m_initPos;
+
             m_str_tanuki_number = str_tanuki_number;
         }
 
