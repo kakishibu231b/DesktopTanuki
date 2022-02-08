@@ -33,6 +33,7 @@ namespace DesktopTanuki
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TanukiMainBody));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemUranai = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemBakushin = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -41,7 +42,6 @@ namespace DesktopTanuki
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tanukiMoveTimer = new System.Windows.Forms.Timer(this.components);
             this.tanukiFukidashiTimer = new System.Windows.Forms.Timer(this.components);
-            this.toolStripMenuItemBakushin = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,36 +55,43 @@ namespace DesktopTanuki
             this.toolStripSeparator2,
             this.toolStripMenuItemVersion});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 126);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 104);
             // 
             // toolStripMenuItemUranai
             // 
             this.toolStripMenuItemUranai.Name = "toolStripMenuItemUranai";
-            this.toolStripMenuItemUranai.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemUranai.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItemUranai.Text = "占い";
             this.toolStripMenuItemUranai.Click += new System.EventHandler(this.toolStripMenuItemUranai_Click);
+            // 
+            // toolStripMenuItemBakushin
+            // 
+            this.toolStripMenuItemBakushin.Name = "toolStripMenuItemBakushin";
+            this.toolStripMenuItemBakushin.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItemBakushin.Text = "驀進";
+            this.toolStripMenuItemBakushin.Click += new System.EventHandler(this.toolStripMenuItemBakushin_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // toolStripMenuItemQuit
             // 
             this.toolStripMenuItemQuit.Name = "toolStripMenuItemQuit";
-            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemQuit.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItemQuit.Text = "バイバイ(^^)/~~~";
             this.toolStripMenuItemQuit.Click += new System.EventHandler(this.toolStripMenuItemQuit_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
             // 
             // toolStripMenuItemVersion
             // 
             this.toolStripMenuItemVersion.Name = "toolStripMenuItemVersion";
-            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemVersion.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItemVersion.Text = "バージョン情報";
             this.toolStripMenuItemVersion.Click += new System.EventHandler(this.toolStripMenuItemVersion_Click);
             // 
@@ -101,18 +108,12 @@ namespace DesktopTanuki
             // 
             // tanukiMoveTimer
             // 
+            this.tanukiMoveTimer.Interval = 10;
             this.tanukiMoveTimer.Tick += new System.EventHandler(this.tanukiMoveTimer_Tick);
             // 
             // tanukiFukidashiTimer
             // 
             this.tanukiFukidashiTimer.Tick += new System.EventHandler(this.tanukiFukidashiTimer_Tick);
-            // 
-            // toolStripMenuItemBakushin
-            // 
-            this.toolStripMenuItemBakushin.Name = "toolStripMenuItemBakushin";
-            this.toolStripMenuItemBakushin.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItemBakushin.Text = "驀進";
-            this.toolStripMenuItemBakushin.Click += new System.EventHandler(this.toolStripMenuItemBakushin_Click);
             // 
             // TanukiMainBody
             // 
