@@ -293,9 +293,13 @@ namespace DesktopTanuki
                     setTanukiBody("6");
                     m_bol_sleep = true;
 
+                    Height = Height / 2;
+                    Width = Width / 2;
+
                     int screen_width = Screen.PrimaryScreen.WorkingArea.Width;
                     int screen_height = Screen.PrimaryScreen.WorkingArea.Height;
-                    m_initPos = new Point(screen_width - m_rectangle.Right, screen_height - m_rectangle.Bottom);
+
+                    m_initPos = new Point(screen_width - m_rectangle.Right / 2, screen_height - m_rectangle.Bottom / 2);
                     Location = m_initPos;
                 }
                 return;
