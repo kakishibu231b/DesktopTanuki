@@ -123,6 +123,12 @@ namespace DesktopTanuki
                 case "6":
                     bitmap = global::DesktopTanuki.Properties.Resources.tanuki_006;
                     break;
+                case "9":
+                    bitmap = global::DesktopTanuki.Properties.Resources.tanuki_009;
+                    break;
+                case "9B":
+                    bitmap = global::DesktopTanuki.Properties.Resources.tanuki_009B;
+                    break;
                 default:
                     bitmap = global::DesktopTanuki.Properties.Resources.tanuki_001;
                     break;
@@ -319,13 +325,61 @@ namespace DesktopTanuki
                 return;
             }
 
+            Random random;
             switch (m_str_tanuki_number)
             {
                 case "1":
                     if (m_int_hima_counter > m_int_hima_counter_max)
                     {
                         m_int_hima_counter = 0;
-                        setTanukiBody("5");
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 4);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("4");
+                                tanukiMoveTimer.Enabled = true;
+                                break;
+                            case 2:
+                                setTanukiBody("5");
+                                break;
+                            case 3:
+                                setTanukiBody("9");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        ++m_int_hima_counter;
+                    }
+                    break;
+                case "4":
+                    if (m_int_hima_counter > m_int_hima_counter_max)
+                    {
+                        m_int_hima_counter = 0;
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 4);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("1");
+                                tanukiMoveTimer.Enabled = false;
+                                break;
+                            case 2:
+                                setTanukiBody("5");
+                                tanukiMoveTimer.Enabled = false;
+                                break;
+                            case 3:
+                                setTanukiBody("9");
+                                tanukiMoveTimer.Enabled = false;
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     else
                     {
@@ -336,7 +390,27 @@ namespace DesktopTanuki
                     if (m_int_hima_counter > m_int_hima_counter_max)
                     {
                         m_int_hima_counter = 0;
-                        setTanukiBody("5A");
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 5);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("1");
+                                break;
+                            case 2:
+                                setTanukiBody("4");
+                                tanukiMoveTimer.Enabled = true;
+                                break;
+                            case 3:
+                                setTanukiBody("5A");
+                                break;
+                            case 4:
+                                setTanukiBody("9");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     else
                     {
@@ -347,7 +421,30 @@ namespace DesktopTanuki
                     if (m_int_hima_counter > m_int_hima_counter_max)
                     {
                         m_int_hima_counter = 0;
-                        setTanukiBody("5B");
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 6);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("1");
+                                break;
+                            case 2:
+                                setTanukiBody("4");
+                                tanukiMoveTimer.Enabled = true;
+                                break;
+                            case 3:
+                                setTanukiBody("5");
+                                break;
+                            case 4:
+                                setTanukiBody("5B");
+                                break;
+                            case 5:
+                                setTanukiBody("9");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     else
                     {
@@ -358,7 +455,100 @@ namespace DesktopTanuki
                     if (m_int_hima_counter > m_int_hima_counter_max)
                     {
                         m_int_hima_counter = 0;
-                        setTanukiBody("5");
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 6);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("1");
+                                break;
+                            case 2:
+                                setTanukiBody("4");
+                                tanukiMoveTimer.Enabled = true;
+                                break;
+                            case 3:
+                                setTanukiBody("5");
+                                break;
+                            case 4:
+                                setTanukiBody("5A");
+                                break;
+                            case 5:
+                                setTanukiBody("9");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        ++m_int_hima_counter;
+                    }
+                    break;
+                case "9":
+                    if (m_int_hima_counter > m_int_hima_counter_max)
+                    {
+                        m_int_hima_counter = 0;
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 100);
+                        if (intNextTanuki == 1)
+                        {
+                            setTanukiBody("9B");
+                        }
+                        else
+                        {
+                            intNextTanuki = random.Next(1, 5);
+                            switch (intNextTanuki)
+                            {
+                                case 1:
+                                    setTanukiBody("1");
+                                    break;
+                                case 2:
+                                    setTanukiBody("4");
+                                    tanukiMoveTimer.Enabled = true;
+                                    break;
+                                case 3:
+                                    setTanukiBody("5");
+                                    break;
+                                case 4:
+                                    setTanukiBody("5A");
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ++m_int_hima_counter;
+                    }
+                    break;
+                case "9B":
+                    if (m_int_hima_counter > m_int_hima_counter_max)
+                    {
+                        m_int_hima_counter = 0;
+                        dateTime = DateTime.Now;
+                        random = new Random(dateTime.Millisecond);
+                        int intNextTanuki = random.Next(1, 5);
+                        switch (intNextTanuki)
+                        {
+                            case 1:
+                                setTanukiBody("1");
+                                break;
+                            case 2:
+                                setTanukiBody("4");
+                                tanukiMoveTimer.Enabled = true;
+                                break;
+                            case 3:
+                                setTanukiBody("5");
+                                break;
+                            case 4:
+                                setTanukiBody("9");
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     else
                     {

@@ -246,5 +246,11 @@
   <ItemGroup>
     <None Include="Resources\sound_tanuki_008.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_009.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\tanuki_009B.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
